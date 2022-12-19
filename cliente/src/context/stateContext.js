@@ -55,11 +55,12 @@ export function StateContext({ children }) {
   }
 
   useEffect(() => {
-    //When page loads execute getProducts function once
+    //When page loads execute getProducts  and getBanner function once
     getProducts();
     getBanner();
   }, []);
 
+  //Send cart items to server and receive the Preference id response to create Checkout
   async function requestMercadoPagoPreferenceId() {
     const options = {
       method: 'POST',
@@ -82,6 +83,33 @@ export function StateContext({ children }) {
         id: preference_id,
       },
       autoOpen: true,
+    });
+  }
+
+  function addQty(product) {
+    setCart((prev) => {
+      return prev.map((item) => {
+        if (item.slug === product.slug) {
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return item;
+        }
+      });
+    });
+  }
+  function decQty(product) {
+    setCart((prev) => {
+      return prev.map((item) => {
+        if (item.slug === product.slug) {
+          if (item.quantity <= 1) {
+            return { ...item, quantity: 1 };
+          } else {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+        } else {
+          return item;
+        }
+      });
     });
   }
 
@@ -113,6 +141,13 @@ export function StateContext({ children }) {
     }
   }
 
+  function removeFromCart(product) {
+    setCart((prev) => {
+      return prev.filter((item) => {
+        return item.slug !== product.slug;
+      });
+    });
+  }
 
   useEffect(() => {
     setTotalPrice(0);
@@ -131,6 +166,9 @@ export function StateContext({ children }) {
         addToCart,
         cart,
         totalPrice,
+        addQty,
+        decQty,
+        removeFromCart,
       }}
     >
       {children}

@@ -3,7 +3,15 @@ import { useStateContext } from './context/stateContext';
 import Products from './components/Products.js';
 
 function App() {
-  const { products, addToCart, cart, totalPrice } = useStateContext();
+  const {
+    products,
+    addToCart,
+    cart,
+    totalPrice,
+    addQty,
+    decQty,
+    removeFromCart,
+  } = useStateContext();
 
   function handleClick(product) {
     addToCart(product);
@@ -13,8 +21,9 @@ function App() {
     return (
       <div key={item.slug}>
         {item.name} - {item.quantity}
-        <button>Add</button>
-        <button>Reduce</button>
+        <button onClick={() => addQty(item)}>Add</button>
+        <button onClick={() => decQty(item)}>Reduce</button>
+        <button onClick={() => removeFromCart(item)}>Remove</button>
       </div>
     );
   });
