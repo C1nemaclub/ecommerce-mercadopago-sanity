@@ -20,6 +20,14 @@ const PRODUCT_QUERY = `*[_type == "product"]{
   "imageUrl" : image[].asset->url
 }`;
 
+const SINGLE_PRODUCT_QUERY = `*[_type == "product"]{
+  name,
+  price,
+  details,
+  slug,
+  "imageUrl" : image[].asset->url
+}`;
+
 const shopData = {
   title: 'Libro 4',
   unit_price: 15000,
@@ -35,6 +43,7 @@ export function StateContext({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   const mercadopago = useMercadopago.v2(
     process.env.REACT_APP_MERCADOPAGO_PUBLIC_TOKEN,
@@ -54,6 +63,23 @@ export function StateContext({ children }) {
     setIsLoading(true);
     const response = await axios.get(BANNER_URL);
     setBanner(response.data.result);
+    setIsLoading(false);
+  }
+
+  async function getSingleProduct(slug) {
+    setIsLoading(true);
+    const SINGLE_PRODUCT_QUERY = `*[_type == "product"  && slug.current == '${slug}']{
+      name,
+      price,
+      details,
+      slug,
+      "imageUrl" : image[].asset->url
+      }`;
+    const SINGLE_PRODUCT_URL = `https://${project_id}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${encodeURIComponent(
+      SINGLE_PRODUCT_QUERY
+    )}`;
+    const response = await axios.get(SINGLE_PRODUCT_URL);
+    setCurrentProduct(response.data.result[0]);
     setIsLoading(false);
   }
 
@@ -188,6 +214,8 @@ export function StateContext({ children }) {
         decQty,
         removeFromCart,
         isLoading,
+        getSingleProduct,
+        currentProduct,
       }}
     >
       {children}

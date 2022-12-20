@@ -1,5 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useStateContext } from '../context/stateContext';
 
 export default function ProductPage() {
-  return <div>ProductPage</div>;
+  const location = useLocation();
+  const slug = location.pathname.split('/')[2];
+  const { getSingleProduct, isLoading, currentProduct } = useStateContext();
+
+  useEffect(() => {
+    getSingleProduct(slug);
+  }, [slug]);
+
+  if (isLoading) {
+    return 'Loading...';
+  }
+  return <div>{currentProduct.name}</div>;
 }
