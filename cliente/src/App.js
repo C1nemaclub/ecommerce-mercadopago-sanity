@@ -1,38 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useStateContext } from './context/stateContext';
-import Products from './components/Products.js';
+import ShoppingCart from './components/ShoppingCart';
+import Home from './pages/Home.js';
+import Success from './pages/Success.js';
+import Error from './pages/Error.js';
+import ProductPage from './pages/ProductPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const {
-    products,
-    addToCart,
-    cart,
-    totalPrice,
-    addQty,
-    decQty,
-    removeFromCart,
-  } = useStateContext();
-
-  function handleClick(product) {
-    addToCart(product);
-  }
-
-  const cartElements = cart.map((item) => {
-    return (
-      <div key={item.slug}>
-        {item.name} - {item.quantity}
-        <button onClick={() => addQty(item)}>Add</button>
-        <button onClick={() => decQty(item)}>Reduce</button>
-        <button onClick={() => removeFromCart(item)}>Remove</button>
-      </div>
-    );
-  });
-
   return (
     <div className='App'>
-      <Products products={products} handleClick={handleClick} />
-      {cart.length > 0 ? cartElements : <p>El carrito esta vacio</p>}
-      Total: {totalPrice}
+      <ShoppingCart />
+      <Router>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path='/product/:id' element={<ProductPage />} />
+          <Route path='/success' element={<Success />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

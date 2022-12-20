@@ -44,14 +44,17 @@ export function StateContext({ children }) {
   );
 
   async function getProducts() {
+    setIsLoading(true);
     const response = await axios.get(PRODUCT_URL);
     setProducts(response.data.result);
     setIsLoading(false);
   }
 
   async function getBanner() {
+    setIsLoading(true);
     const response = await axios.get(BANNER_URL);
     setBanner(response.data.result);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -70,11 +73,21 @@ export function StateContext({ children }) {
     };
     const response = await axios.post(
       'http://localhost:4000/payment',
-      shopData,
+      cart,
       options
     );
     console.log(response.data.id);
-    createCheckoutButton(response.data.id);
+    //createCheckoutButton(response.data.id);
+    mercadopago.checkout({
+      preference: {
+        id: response.data.id,
+      },
+      // render: {
+      //   container: '.cho-container',
+      //   label: 'Pagar',
+      // },
+      autoOpen: true,
+    });
   }
 
   function createCheckoutButton(preference_id) {
@@ -82,7 +95,11 @@ export function StateContext({ children }) {
       preference: {
         id: preference_id,
       },
-      autoOpen: true,
+      render: {
+        container: '.cho-container',
+        label: 'Pagar',
+      },
+      // autoOpen: true,
     });
   }
 
@@ -132,8 +149,8 @@ export function StateContext({ children }) {
           ...prev,
           {
             slug: product.slug.current,
-            price: product.price,
-            name: product.name,
+            unit_price: product.price,
+            title: product.name,
             quantity: 1,
           },
         ];
@@ -153,7 +170,7 @@ export function StateContext({ children }) {
     setTotalPrice(0);
     cart.forEach((item) => {
       setTotalPrice((prev) => {
-        return (prev = prev + item.price * item.quantity);
+        return (prev = prev + item.unit_price * item.quantity);
       });
     });
   }, [cart]);
@@ -164,11 +181,13 @@ export function StateContext({ children }) {
         products,
         requestMercadoPagoPreferenceId,
         addToCart,
+        banner,
         cart,
         totalPrice,
         addQty,
         decQty,
         removeFromCart,
+        isLoading,
       }}
     >
       {children}
