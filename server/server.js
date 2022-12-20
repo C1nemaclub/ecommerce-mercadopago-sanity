@@ -15,32 +15,50 @@ mercadopago.configure({
 app.use(express.static('public'));
 
 app.post('/payment', (req, res) => {
-  console.log(req.body);
-
-  const { title, unit_price, quantity } = req.body;
+  const cartItems = req.body.map((item) => {
+    return {
+      title: item.title,
+      unit_price: item.unit_price,
+      quantity: item.quantity,
+      currency_id: 'COP',
+    };
+  });
+  console.log(cartItems);
 
   let preference = {
-    items: [
-      {
-        title: title,
-        unit_price: unit_price,
-        quantity: quantity,
+    items: req.body,
+    shipments: {
+      cost: 5000,
+      receiver_address: {
+        zip_code: '5700',
+        street_number: 123,
+        street_name: 'Street',
+        floor: '4',
+        apartment: 'C',
       },
-    ],
+      payment_methods: {
+        installments: 1,
+      },
+    },
+    back_urls: {
+      success: 'http://localhost:3000/success',
+      failure: 'http://localhost:4000/',
+      pending: 'http://localhost:4000/',
+    },
   };
   mercadopago.preferences
     .create(preference)
     .then(function (response) {
       // Este valor reemplazará el string "<%= global.id %>" en tu HTML
       global.id = response.body.id;
+      res.json({
+        id: global.id,
+        message: 'Id Sent',
+      });
     })
     .catch(function (error) {
       console.log(error);
     });
-  res.json({
-    id: global.id,
-    message: 'Id Sent',
-  });
 });
 
 app.get('/admin', (req, res) => {
