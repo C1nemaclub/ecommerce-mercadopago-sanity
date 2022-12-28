@@ -1,0 +1,26 @@
+.products-section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.products-section h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.products-section .product-grid {
+  width: 100%;
+  padding: 1em 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  place-items: center;
+}
+
+.products-section .product-grid .card {
+  grid-column: span 1;
+}
+/*# sourceMappingURL=productsLayout.css.map */

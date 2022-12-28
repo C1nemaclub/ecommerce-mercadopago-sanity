@@ -67,6 +67,7 @@ export function StateContext({ children }) {
   }
 
   async function getSingleProduct(slug) {
+    getProducts();
     setIsLoading(true);
     const SINGLE_PRODUCT_QUERY = `*[_type == "product"  && slug.current == '${slug}']{
       name,

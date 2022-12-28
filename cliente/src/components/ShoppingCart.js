@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStateContext } from '../context/stateContext';
+import '../styles/shoppingCart/shoppingCart.scss';
 
 export default function ShoppingCart() {
   const {
@@ -23,7 +24,7 @@ export default function ShoppingCart() {
   });
 
   return (
-    <div>
+    <div className='cart'>
       ShoppingCart
       {cartElements}
       Total: {totalPrice}
