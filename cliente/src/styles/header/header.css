@@ -14,10 +14,15 @@ nav {
   -webkit-box-shadow: 0px 5px 10px -1px #7a7a7a;
           box-shadow: 0px 5px 10px -1px #7a7a7a;
   margin-bottom: 2rem;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
 }
 
 nav .logo {
   font-size: 1.6rem;
+  cursor: pointer;
 }
 
 nav ul {

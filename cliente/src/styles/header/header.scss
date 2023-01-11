@@ -8,8 +8,13 @@ nav {
   padding: 0 2em;
   box-shadow: 0px 5px 10px -1px rgba(122, 122, 122, 1);
   margin-bottom: 2rem;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
   .logo {
     font-size: 1.6rem;
+    cursor: pointer;
   }
   ul {
     display: flex;

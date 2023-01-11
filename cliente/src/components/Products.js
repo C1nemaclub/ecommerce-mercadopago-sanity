@@ -14,6 +14,7 @@ export default function Products({ products, handleClick }) {
             effect='blur'
             src={product.imageUrl[0]}
             alt='product'
+            class='product-image'
             placeholderSrc={product.imageUrl[0]}
             onClick={() => navigate(`/product/${product.slug.current}`)}
           />

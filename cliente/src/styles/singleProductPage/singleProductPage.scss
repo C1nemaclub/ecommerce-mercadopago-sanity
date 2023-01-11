@@ -1,0 +1,126 @@
+.single-product-section {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 6rem;
+  min-height: 100vh;
+  height: 100%;
+  .single-product-card {
+    position: relative;
+    margin-top: 8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 2em;
+    height: 520px;
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .img-container {
+        width: 300px;
+        height: 350px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .preview-images {
+        display: flex;
+        img {
+          width: 100px;
+          height: 100px;
+          &:hover {
+            cursor: pointer;
+            border: 1px solid red;
+          }
+        }
+      }
+    }
+    .content {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      .name {
+        font-size: 40px;
+        margin-bottom: 1rem;
+      }
+      .price {
+        color: #ff0000;
+        font-size: 36px;
+        font-weight: 500;
+      }
+      .details {
+        margin-top: 1.5rem;
+        max-width: 250px;
+        h4 {
+          font-size: 20px;
+        }
+        .text {
+          margin-top: 0.6rem;
+          font-size: 16px;
+        }
+      }
+      .button-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        gap: 10px;
+        width: 100%;
+      }
+    }
+  }
+  .featured {
+    margin-top: 5rem;
+    margin: 0 auto;
+    text-align: center;
+    h2 {
+      margin-top: 5rem;
+      font-size: 40px;
+      margin-bottom: 1rem;
+    }
+    .cards {
+      display: flex;
+      margin-top: 5rem;
+      gap: 20px;
+      justify-content: center;
+    }
+    .popular-card {
+      flex-direction: column;
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+      img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        margin-bottom: 10px;
+      }
+      .name {
+        color: #000;
+      }
+      .price {
+        color: red;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .single-product-section {
+    .single-product-card {
+      flex-direction: column;
+      height: 100%;
+      .content {
+        .button-row {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}

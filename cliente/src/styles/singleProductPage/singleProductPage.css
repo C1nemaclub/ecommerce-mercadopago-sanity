@@ -1,0 +1,186 @@
+.single-product-section {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 6rem;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.single-product-section .single-product-card {
+  position: relative;
+  margin-top: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 40px;
+  padding: 2em;
+  height: 520px;
+}
+
+.single-product-section .single-product-card .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+
+.single-product-section .single-product-card .left .img-container {
+  width: 300px;
+  height: 350px;
+}
+
+.single-product-section .single-product-card .left .img-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.single-product-section .single-product-card .left .preview-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.single-product-section .single-product-card .left .preview-images img {
+  width: 100px;
+  height: 100px;
+}
+
+.single-product-section .single-product-card .left .preview-images img:hover {
+  cursor: pointer;
+  border: 1px solid red;
+}
+
+.single-product-section .single-product-card .content {
+  position: relative;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.single-product-section .single-product-card .content .name {
+  font-size: 40px;
+  margin-bottom: 1rem;
+}
+
+.single-product-section .single-product-card .content .price {
+  color: #ff0000;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.single-product-section .single-product-card .content .details {
+  margin-top: 1.5rem;
+  max-width: 250px;
+}
+
+.single-product-section .single-product-card .content .details h4 {
+  font-size: 20px;
+}
+
+.single-product-section .single-product-card .content .details .text {
+  margin-top: 0.6rem;
+  font-size: 16px;
+}
+
+.single-product-section .single-product-card .content .button-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: auto;
+  gap: 10px;
+  width: 100%;
+}
+
+.single-product-section .featured {
+  margin-top: 5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.single-product-section .featured h2 {
+  margin-top: 5rem;
+  font-size: 40px;
+  margin-bottom: 1rem;
+}
+
+.single-product-section .featured .cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 5rem;
+  gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.single-product-section .featured .popular-card {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  cursor: pointer;
+}
+
+.single-product-section .featured .popular-card img {
+  width: 250px;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.single-product-section .featured .popular-card .name {
+  color: #000;
+}
+
+.single-product-section .featured .popular-card .price {
+  color: red;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 900px) {
+  .single-product-section .single-product-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 100%;
+  }
+  .single-product-section .single-product-card .content .button-row {
+    margin-top: 1rem;
+  }
+}
+/*# sourceMappingURL=singleProductPage.css.map */
